@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ .Title }}</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="brand">
+        <div class="brand__logo"></div>
+        <div class="brand__name">Users</div>
+      </div>
+
+      <nav class="menu">
+      </nav>
+
+      <div class="actions">
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="hero">
+        <h1 class="h1">Пользователи</h1>
+      </section>
+
+      <section class="section">
+        <h2 class="h2">Список</h2>
+
+        <div class="table">
+          <div class="row head">
+            <div>ID</div>
+            <div>Имя</div>
+            <div>Email</div>
+            <div>Роль</div>
+            <div>Статус</div>
+          </div>
+
+          {{ range .Users }}
+          <div class="row">
+            <div class="mono">#{{ .ID }}</div>
+            <div>{{ .Name }}</div>
+            <div class="muted">{{ .Email }}</div>
+            <div><span class="chip">{{ .Role }}</span></div>
+            <div>
+              <span class="chip {{ if eq .Status "Active" }}chip--ok{{ else if eq .Status "Pending" }}chip--warn{{ else }}chip--bad{{ end }}">
+                {{ .Status }}
+              </span>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </section>
+
+      <section class="section">
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="muted">© Users</div>
+      <div class="footer__links">
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
